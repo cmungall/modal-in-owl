@@ -301,9 +301,9 @@ If we introduce an additional assertion
     A SubClassOf prototype value a
 
 Informally we can think of this as saying "the individual a serves as
-a prototype for all As".
+a prototype for all As". We call this a "prototypicality assertion".
 
-Given this, and given that we have iplemented the modal axiom patterns
+Given this, and given that we have implemented the modal axiom patterns
 described above, we entail
 
     A SubClassOf prototypically-part-of some B
@@ -321,10 +321,11 @@ Note we also get entailment to individuals as well:
     A SubClassOf prototypically-part-of value b
     A SubClassOf prototypically-part-of value c
 
-This is all entailed by our axioms, and not a matter of debate. What
-is perhaps debatable is the utility and appropriateness of this. When
-does it suffice to say something is "prototypical" (or any other modal
-qualifier)? When does this yield unintended consequences?
+This is all entailed by our axioms and definitions, and not a matter
+of debate. What is perhaps debatable is the utility and
+appropriateness of this. When does it suffice to say something is
+"prototypical" (or any other modal qualifier)? When does this yield
+unintended consequences?
 
 At the risk of circular reasoning, I would say this is appropriate
 whenever one regards a certain state-of-affairs as prototypical, and
@@ -341,14 +342,16 @@ point, that seems to rely on the closed world assumption to preserve
 intendedness. In the real world, our assertions are a subset of the
 web of true sentences that hold, not all of which we would wish to
 treat as prototypical (e.g. they may connect to a particular physical
-organism that is unique in its own way, such as being wormlike).
+organism that is unique in its own way, such as being wormlike or
+tentacled).
 
 Practically, I would argue that this is not a problem. Formally, we
 are dividing the ABox into two - a part that we map to observed
 individuals in the world, and another part that is intentionally
 circumscribed / underspecified and has no commitment to a mapping to
 *specific* observed individuals in the world. This second ABox can be
-seen as having TBox-like characteristics.
+seen as having TBox-like characteristics, which are realized when we
+make prototypicality assertions.
 
 ## Applications to material entity ontologies
 
@@ -361,8 +364,8 @@ E.g.
     Tetrapod SubClassOf has-part some Limb
 
 First of all, the assertion of dual TBox axioms can be unintuitive to
-those not versed in DLs. Second, the ontology above admits some
-unintended models, e.g.
+those not versed in DLs. It feels redundant (but it's not). Second,
+the ontology above admits some unintended models, e.g. given:
 
     Limb(limb1)
     Limb(limb2)
@@ -370,10 +373,13 @@ unintended models, e.g.
     Tetrapod(t2)
     t1 != t2
     limb1 != limb2
+
+The following is a model:
+
     limb1 part-of t1 has-part limb2 part-of t2
 
 This could potentially be extended to a strange cyclical daisy chain
-or tetrapods, or some Borgesian infinite tetrapod loop.
+of tetrapods, or some Borgesian infinite tetrapod loop.
 
 Similarly, it is impossible to represent a cyclic structure in a TBox,
 due to their tree properties. It is impossible to distinguish a linear
@@ -406,55 +412,60 @@ everything is mutually different).
 This can be drawn in a graph structure that any anatomist can
 understand.
 
-The strict model-theoretic interpretation is unambiguous.
+The strict model-theoretic interpretation is unambiguous. 
 
 However, the model in itself has no predictive power or generalization
-capabilities. We're simply describing a state of affairs, and not
-talking about digits, limbs in general.
+capabilities, because it is an ABox. We're simply describing a state
+of affairs, and not talking about digits, limbs in general.
 
 The traditional ontologist way to generalize would be to make TBox
 axioms, but as discussed above, these can be weaker than expected due
 to the tree-model no-variable property of DL. In addition, there is
 the classic problem of exceptions. This is usually handled by
-weakening in certain directions (e.g. has-parts are less likely to
-hold more generally), yielding a weaker model, arbitrarily deciding
-some cutoff (e.g. we rule amputated digits to ectopic structures to be
-out of scope). This can cause problems when integrating mutant
-phenotype and canonical anatomy (see Hoehndorf et al).
+weakening in certain directions (e.g. has-parts are more likely to be
+violated), yielding a weaker model, arbitrarily deciding some cutoff
+(e.g. we rule amputated digits to ectopic structures to be out of
+scope for our "canonical ontology"). This can cause problems when
+integrating mutant phenotype and canonical anatomy (see Hoehndorf et
+al).
 
 A prototype-based approach arguably better recapitulates both
 biologists cognitive models (see Lakoff) and biological reality
 (evolution is not essentialist - it takes prototypes and tweaks them -
-any "classes" may be artificial).
+any "classes" may be artificial, shadows on the cave wall).
 
-How might this work?
+How might this work in practice?
 
 We might start off with an ABox model such as the one above. We may
 conceive of these as observations, or as a hypothetical model
-(i.e. TBox-like ABox), or even as the evolutionary ancestor.
+(i.e. TBox-like ABox), or even if we are bold as the evolutionary ancestor.
 
 We might then start adding assertions of the form:
 
   Limb SubClassOf prototype value limb1
 
-We would then infer that limbs prototypically have stylopods, zeugopods, autopods, digits.
+We would then infer that limbs prototypically have-parts stylopods,
+zeugopods, autopods, digits.
 
-We _also_ infer that autopods prototypically have 5 digits. This may or
-may not be a problem depending on how we wish to use the operatir
-"prototypically". We have the option of making the prototypes more restricted, e.g.
+We _also_ infer that Limbs prototypically have autopods with 5
+digits. This may or may not be a problem depending on how we wish to
+use the operatir "prototypically". We have the option of making the
+prototypes more restricted, e.g.
 
   (Limb and part_of some Human) SubClassOf prototype value limb1
 
-Or of introducing different operators, e.g. "canonical", "prototypically".
+Or of introducing different operators, e.g. "canonical",
+"prototypically". 
 
 Obviously this is a radically different way of approaching ontology
 building. There may be disavantages in terms of not being able to
-leverage DL tooling and reasoning to the same extent. New kinds of
-tooling, e.g. analogy-based reasoning may be required. Some of these
-already exist, e.g. DL-learner. Alteratively it could be argued that
-we would use the DL tooling where it belongs and offers more freedom
-for modeling the messiness of biology without forcing an essentialist
-template on everything.
+leverage DL tooling and reasoning to the same extent, especially for
+error checking. New kinds of tooling, e.g. analogy-based reasoning may
+be required. Some of these already exist,
+e.g. DL-learner. Alteratively it could be argued that we would use the
+DL tooling where it belongs and offers more freedom for modeling the
+messiness of biology without forcing an essentialist template on
+everything.
 
 There is no reasons why both approaches can't live side by side. Most
 would agree that there are some things for which TBox modeling makes
@@ -464,5 +475,25 @@ sense. E.g. data, certain kinds of observations. Then there are things
 in the middle - e.g. statements about gene products and
 complexes. Here it makes sense to be pragmatic, and to model according
 to what kinds of questions are being asked. The framework introduced
-here provides a way to move things between levels in a principled way.
+here provides a way to move things between levels in a principled
+way. From a prosaic perspective, one possibility is to auto-add
+prototypicality assertions to a traditionally modeled ABox to be able
+to make DL-queries using "caoable of" type relations. Similarly, the
+use of "capable of" relations has been demonstrated to be useful in
+ontology building, allowing the capturing of knowledge that is
+essentially modal in nature.
+
+One area in which prototypical modeling may be useful is chemical
+entities . As previously mentioned, cyclic structures can be
+captured. The use of modal qualifiers may be uneccessary here, we may
+want to jump straight from the prototype to a (weaker, in the case of
+cycles) class expression, by finding the Most Specific Class
+Expression. For repeated or branching structures, some mixture may be
+necessary.
+
+There may be some advantage in anatomy, rather than creating
+hierarchies of abstraction to cpature the various exceptions in
+evolution. The original pre-VBO proposal may be close in spirit.
+
+...
 
