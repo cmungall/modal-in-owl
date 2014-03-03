@@ -88,16 +88,16 @@ We further distinguish a subset M^s of M. These are the set of
 *reflexive* or self-modal operators. If m is in M^s then mp implies p,
 i.e.
   
-  for all mp in MP, m in M^s, p in P, add:
-     mp <- p
+    for all mp in MP, m in M^s, p in P, add:
+      mp <- p
 
 We are are working in an expressive enough variant of OWL, we can add
 
-  for all m in M^s, add: Reflexive(m)
+    for all m in M^s, add: Reflexive(m)
 
 Or
 
-  for all m in M^s, add: C SubClassOf M self
+    for all m in M^s, add: C SubClassOf M self
 
 For some appropriately high-level C
 
