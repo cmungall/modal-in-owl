@@ -170,7 +170,8 @@ mouse1? The domain modeler may choose to simply ignore this question
 and treat x as an artifact of formalization of typicality in
 OWL. Alternatively, the domain modeler may choose to give an account
 in a number of different ways, perhaps invoking possible-worlds, or a
-real evolutionary ancestor. See further on in this document.
+real evolutionary ancestor. Or we may choose to use a modal operator
+such as "similar to". See further on in this document.
 
 One possibility is to treat _x_ as some kind of dispositional
 entity. We can introduce a new relation that connects a disposition to
@@ -351,7 +352,8 @@ individuals in the world, and another part that is intentionally
 circumscribed / underspecified and has no commitment to a mapping to
 *specific* observed individuals in the world. This second ABox can be
 seen as having TBox-like characteristics, which are realized when we
-make prototypicality assertions.
+make prototypicality assertions, which can be viewed in some sense as
+"weaker" subclass axioms.
 
 ## Applications to material entity ontologies
 
