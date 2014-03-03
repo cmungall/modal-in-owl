@@ -154,18 +154,23 @@ And
 
     mouse1 Type Mouse
 
-There is a model:
+Assuming the bidirectional implication for object properties in MP,
+there is a model:
 
     mouse1 typically x
     x has-part t
     t Type tail
 
-This poses the question: what is x? The domain modeler may choose to
-simply ignore this question and treat x as an artifact of
-formalization of typicality in OWL. Alternatively, the domain modeler
-may choose to give an account in a number of different ways, perhaps
-invoking possible-worlds, or a rea; evolutionary ancestor. See further
-on in this document.
+We call this the existential-restriction-modal-chain (ERMC) pattern,
+as we are saying there exists some x where x is in the modal relation
+to mouse1.
+
+This poses the question: what is x? What is the actual relationship to
+mouse1? The domain modeler may choose to simply ignore this question
+and treat x as an artifact of formalization of typicality in
+OWL. Alternatively, the domain modeler may choose to give an account
+in a number of different ways, perhaps invoking possible-worlds, or a
+real evolutionary ancestor. See further on in this document.
 
 One possibility is to treat _x_ as some kind of dispositional
 entity. We can introduce a new relation that connects a disposition to
@@ -175,27 +180,27 @@ affords us the possibility of using a universal quantifier, e.g.
     mouse1 typically x
     x materialized-as ONLY (has-part some Tail)
 
-Aside: Note that this can be seen as a generalization of BFO
+We call this the universal-restriction-dispositional-entity (URDE)
+pattern.
+
+Aside: Note that URDE can be seen as a generalization of BFO
 dispositions (which are realized by processes). We could perhaps use
 BFO dispostions if we are allowed some kind of process-IC relation
 such as "being", such that any state-of-affairs could be encoded by a
 being-process.
 
-This may be viewed as philosophically preferable by some on the
-grounds of parsimony and realism: it does not introduce any new
+URDE may be viewed by some as philosophically preferable by some on
+the grounds of parsimony and realism: it does not introduce any new
 physical entities, imagined or otherwise. However, one could still
-question the introduction of a new invisible dispositional entity x,
-(if one wanted to go down that rabbit hole).
+question the introduction of a new "real"-but-invisible dispositional
+entity _x_ (if one wanted to go down that rabbit hole). It may be the
+case that EMC is the more philosophically defensible of the two (if
+this matters to us).
 
-However, it is not clear that this
-universal-restriction-dispositional-entity (URDE) pattern offers any
-computational advantages over the existential-modal-chain (EMC)
-pattern. In fact it is arguably worse, as it forces us to step outside
-EL++, and it introduces other difficulties.
-
-I will return to this in the discussion. The use of existentials and
-new material individuals (EMC) may be defensible from a realist
-viewpoint for many domains.
+From a computational perspective it is not clear that this URDE
+pattern offers any advantages over the EMC pattern. In fact it is
+arguably worse, as it forces us to step outside EL++, and it
+introduces other difficulties (difficulties of property chaining).
 
 ## Domain-specific application
 
@@ -244,7 +249,7 @@ carried out by that material entity. i.e.
 Note that OWL cannot express "<->" here we treat this as an axiom
 replacement operation prior to reasoning.
 
-Thus it is valid to transform:
+Thus under this definition it is valid to transform:
 
     photoreceptor cell SubClassOf capable_of some detection-of-light-stimulus
 
@@ -270,9 +275,9 @@ ancestor). This real-existing-prototype has only properties that
 we could expect to see propagated in the modal form.
 
 The counter-argument is that there are arguably cases where no such
-prototype exists. For example, our prototype photoreceptor may have
-the property of being part of a vermiform animal. But we woould not
-say that photoreceptors prototypically are part of worms.
+prototypical entity exists. For example, our prototype photoreceptor
+may have the property of being part of a vermiform animal. But we may
+not wish to say that photoreceptors prototypically are part of worms.
 
 ## Generalization from prototypical models
 
@@ -282,9 +287,9 @@ anything about As, Bs or Cs in general.
 
 We can find the most specific class expression for each individual. E.g.
 
-    a Type A and part-of some B and part-of some C
+    a Type (A and part-of some (B and part-of some C))
 
-But not
+But *not*
 
     A SubClassOf part-of some B
 
