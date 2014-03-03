@@ -73,7 +73,7 @@ P.
 
 For any _mp_ in MP, we add an axiom:
 
-   mp <- m *o* p
+    mp <- m *o* p
 
 This has the side effect of inheriting a _safe_ set of characteristics
 from p. For example, if p is transitive, then _mp_ will hold for any
@@ -89,7 +89,7 @@ We further distinguish a subset M^s of M. These are the set of
 i.e.
   
   for all mp in MP, m in M^s, p in P, add:
-    mp <- p
+     mp <- p
 
 We are are working in an expressive enough variant of OWL, we can add
 
@@ -113,15 +113,15 @@ One of the main desirable characteristics of applying an operator is
 to insulate from exceptions. For example, the following yields no
 contradiction:
 
-   Shh SubClassOf typically-involved-in some Heart-Development
-   ssh0001 Type Shh
-   not(ssh0001 involved-in some Heart-Development)
+    Shh SubClassOf typically-involved-in some Heart-Development
+    ssh0001 Type Shh
+    not(ssh0001 involved-in some Heart-Development)
 
 Furthermore, exception-like structures can easily be queried, e.g. in
 the ABox:
 
-   SELECT * WHERE
-    { ?i Type typically-R some ?X . NOT(?i Type R some ?X) }
+    SELECT * WHERE
+     { ?i Type typically-R some ?X . NOT(?i Type R some ?X) }
 
 ## Models and use of existential quantification
 
@@ -130,17 +130,17 @@ models implied by our ontologies and knowledge bases.
 
 For example, given a TBox axiom:
 
-   mouse SubClassOf typically-has-part some tail
+    mouse SubClassOf typically-has-part some tail
 
 And
 
-   mouse1 Type Mouse
+    mouse1 Type Mouse
 
 There is a model:
 
-   mouse1 typically x
-   x has-part t
-   t Type tail
+    mouse1 typically x
+    x has-part t
+    t Type tail
 
 This poses the question: what is x? The domain modeler may choose to
 simply ignore this question and treat x as an artifact of
@@ -154,8 +154,8 @@ entity. We can introduce a new relation that connects a disposition to
 a situation in which it comes about (say "materialized-by"). This
 affords us the possibility of using a universal quantifier, e.g.
 
-   mouse1 typically x
-   x materialized-as ONLY (has-part some Tail)
+    mouse1 typically x
+    x materialized-as ONLY (has-part some Tail)
 
 Aside: Note that this can be seen as a generalization of BFO
 dispositions (which are realized by processes). We could perhaps use
@@ -187,13 +187,13 @@ wary of being too strong.
 
 E.g. intuitively we may say
 
-   Shh-protein involved-in Heart-development
+    Shh-protein involved-in Heart-development
 
 But there may be many instances of Shh-protein that do not.
 
 Similarly, at a cellular level:
 
-   photoreceptor cell involved-in detection-of-light-stimulus
+    photoreceptor cell involved-in detection-of-light-stimulus
 
 But this may not always be true. This poses genuine practical problems
 if we are to make use of stromg disjointness axioms in our ontology
@@ -202,15 +202,15 @@ that will be overridden by real-world situations.
 The capable_of and capable_of_part_of relations were introduced to
 deal with this. These were conceived as shortcuts, e.g.:
 
-   photoreceptor cell SubClassOf capable_of some detection-of-light-stimulus
-   ==>
-   photoreceptor cell SubClassOf bearer-of some (realized-by only detection-of-light-stimulus)
+    photoreceptor cell SubClassOf capable_of some detection-of-light-stimulus
+    ==>
+    photoreceptor cell SubClassOf bearer-of some (realized-by only detection-of-light-stimulus)
 
-Or, using the GCI interpretation   
+Or, using the GCI interpretation    
 
-   photoreceptor cell SubClassOf capable_of some detection-of-light-stimulus
-   +
-   capable_of some detection-of-light-stimulus SubClassOf bearer-of some (realized-by only detection-of-light-stimulus)
+    photoreceptor cell SubClassOf capable_of some detection-of-light-stimulus
+    +
+    capable_of some detection-of-light-stimulus SubClassOf bearer-of some (realized-by only detection-of-light-stimulus)
 
 In practice, the expansion step has not been required for useful
 reasoning. Note that this only works for processes (although see above
@@ -221,18 +221,18 @@ some base relation, e.g. "executes", "agent in" or "enables", that
 holds between a material entity and a process that is actively being
 carried out by that material entity. i.e.
 
-   capable_of <-> prototypically *o* enables
+    capable_of <-> prototypically *o* enables
 
 Note that OWL cannot express "<->" here we treat this as an axiom
 replacement operation prior to reasoning.
 
 Thus it is valid to transform:
 
-   photoreceptor cell SubClassOf capable_of some detection-of-light-stimulus
+    photoreceptor cell SubClassOf capable_of some detection-of-light-stimulus
 
 To:
 
-   photoreceptor cell SubClassOf prototypically some (enables some detection-of-light-stimulus)
+    photoreceptor cell SubClassOf prototypically some (enables some detection-of-light-stimulus)
 
 From a terminological perspective it may be preferable to name the
 modal property "has prototype". Although we still have not addressed
@@ -264,18 +264,18 @@ anything about As, Bs or Cs in general.
 
 We can find the most specific class expression for each individual. E.g.
 
-   a Type A and part-of some B and part-of some C
+    a Type A and part-of some B and part-of some C
 
 But not
 
-   A SubClassOf part-of some B
+    A SubClassOf part-of some B
 
 However, sometimes it may be desirable to make some kind of leap like
 this, possibly introducing a modal qualifier.
 
 If we introduce an additional assertion
 
-   A SubClassOf prototype value a
+    A SubClassOf prototype value a
 
 Informally we can think of this as saying "the individual a serves as
 a prototype for all As".
@@ -283,20 +283,20 @@ a prototype for all As".
 Given this, and given that we have iplemented the modal axiom patterns
 described above, we entail
 
-   A SubClassOf prototypically-part-of some B
+    A SubClassOf prototypically-part-of some B
 
 As well as
 
-   A SubClassOf prototypically-part-of some (B and part-of some C)
+    A SubClassOf prototypically-part-of some (B and part-of some C)
 
 And assuming transitivity of part-of:
 
-   A SubClassOf prototypically-part-of some C
+    A SubClassOf prototypically-part-of some C
 
 Note we also get entailment to individuals as well:
 
-   A SubClassOf prototypically-part-of value b
-   A SubClassOf prototypically-part-of value c
+    A SubClassOf prototypically-part-of value b
+    A SubClassOf prototypically-part-of value c
 
 This is all entailed by our axioms, and not a matter of debate. What
 is perhaps debatable is the utility and appropriateness of this. When
@@ -334,20 +334,20 @@ ontologies is the co-reference issue.
 
 E.g.
 
-   Limb SubClassOf part-of some Tetrapod
-   Tetrapod SubClassOf has-part some Limb
+    Limb SubClassOf part-of some Tetrapod
+    Tetrapod SubClassOf has-part some Limb
 
 First of all, the assertion of dual TBox axioms can be unintuitive to
 those not versed in DLs. Second, the ontology above admits some
 unintended models, e.g.
 
-   Limb(limb1)
-   Limb(limb2)
-   Tetrapod(t1)
-   Tetrapod(t2)
-   t1 != t2
-   limb1 != limb2
-   limb1 part-of t1 has-part limb2 part-of t2
+    Limb(limb1)
+    Limb(limb2)
+    Tetrapod(t1)
+    Tetrapod(t2)
+    t1 != t2
+    limb1 != limb2
+    limb1 part-of t1 has-part limb2 part-of t2
 
 This could potentially be extended to a strange cyclical daisy chain
 or tetrapods, or some Borgesian infinite tetrapod loop.
@@ -365,17 +365,17 @@ axiomatically weak anyway.
 A radically different way of building an ontology is a prototype-based
 approach. Here we may start with an ABox:
 
-   digit1 part-of autopod1
-   digit2 part-of autopod1
-   digit3 part-of autopod1
-   digit4 part-of autopod1
-   digit5 part-of autopod1
-   autopod1 connected-to zeugopod1
-   zeugopod1 connected-to stylopod1
-   stylopod1 connected-to body1
-   autopod1 part-of body1
-   zeugopod1 part-of body1
-   stylopod1 part-of body1
+    digit1 part-of autopod1
+    digit2 part-of autopod1
+    digit3 part-of autopod1
+    digit4 part-of autopod1
+    digit5 part-of autopod1
+    autopod1 connected-to zeugopod1
+    zeugopod1 connected-to stylopod1
+    stylopod1 connected-to body1
+    autopod1 part-of body1
+    zeugopod1 part-of body1
+    stylopod1 part-of body1
 
 (we assume class assertions of the form X(X_n), and we also assume
 everything is mutually different).
