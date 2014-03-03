@@ -63,6 +63,9 @@ OWL?
 
 (Discussion of Shulze et al paper on ELF1 here)
 
+(Need more details on why modal logic slightly different - "competes"
+with OWL subClassOf relations?)
+
 ## OWL Pattern
 
 For every modal qualifier in our domain, we create a modal operator
@@ -111,6 +114,16 @@ with the exception of operators such as "some" or "possibly", if it is
 already included in M. Intuitively, if a relation holds, for some pair
 then there is some pair for which it holds, and it is possible for
 that relation to hold.
+
+In practical terms, the self-modal operators make lattice-like
+subproperty hierarchies. E.g. given a base property like "part of" and
+a base subproperty like "boundary part of":
+
+       may be part of
+      /             \
+    part of    may be boundary part of
+      \             /
+      boundary part of
 
 ## Insulation characteristics
 
