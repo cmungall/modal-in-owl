@@ -11,7 +11,7 @@ transformations that can be used for query-answering rather than a
 philosophical treatment.
 
 THIS IS AN EARLY DRAFT. It combines some practical approaches with
-more radical suggestions, these may be split out in future.
+more radical suggestions, these portions may be split out in future.
 
 ## Background
 
@@ -22,12 +22,15 @@ Consider the following statements:
  * every british car drives on the left
  * everyone must obey the law
  * every heart pumps blood
+ * every mouse has a tail
+ * every aspirin treats a headache
 
 Every statement is false, as there exist numerous exceptions, with
 sometimes exceptions being in the majority.
 
-However, it seems there is some kind of relationship between the class
-on the left and the class on the right. How do we capture this?
+However, it seems there is some kind of genuine, useful, queryable
+relationship between the class on the left and the class on the
+right. How do we capture this?
 
 One way to do this is to attach an operator to each
 sentence. Informally, we can draft a list of modal linguistic
@@ -47,9 +50,9 @@ We can use the linguistic qualifiers to name a series of
 relationships, such as "may participate in" (see for example, the NCI
 Thesaurus). This is slightly unsatisfying. How do these qualified
 relations relate to their unqualified counterparts? When should the
-qualified versions be used over the unqualified ones? This is
-important for developing and querying over knowledge bases in a
-consistent manner.
+qualified versions be used over the unqualified ones? When do these
+become weak to the point of uselessness? This is important for
+developing and querying over knowledge bases in a consistent manner.
 
 These operators can be viewed as *modal* operators. Modal logic
 provides a system for operating on these operators (typically
@@ -57,6 +60,8 @@ provides a system for operating on these operators (typically
 additional commitments and machinery, and in any case OWL does not
 support modal logic.  How do we go about encoding our qualifiers in
 OWL?
+
+(Discussion of Shulze et al paper on ELF1 here)
 
 ## OWL Pattern
 
