@@ -280,7 +280,14 @@ prototypical entity exists. For example, our prototype photoreceptor
 may have the property of being part of a vermiform animal. But we may
 not wish to say that photoreceptors prototypically are part of worms.
 
+### Co-existence of interpretations
+
+For process-prototypes there is no reason why EMC and URDE
+interpretations cannot co-exist as they do not logically contradict.
+
 ## Generalization from prototypical models
+
+(THIS PART MORE EXPERIMENTAL)
 
 If we observe 3 individuals connected in a chain a part-of b part-of
 c, where we have class assertions A(a), B(a), C(c), we cannot infer
@@ -357,10 +364,12 @@ make prototypicality assertions, which can be viewed in some sense as
 
 ## Applications to material entity ontologies
 
+(THIS PART EVEN MORE EXPERIMENTAL)
+
 One issue with existing material entity ontologies such as anatomy
 ontologies is the co-reference issue.
 
-E.g.
+E.g. given a pair of reciprocal axioms:
 
     Limb SubClassOf part-of some Tetrapod
     Tetrapod SubClassOf has-part some Limb
@@ -468,6 +477,8 @@ e.g. DL-learner. Alteratively it could be argued that we would use the
 DL tooling where it belongs and offers more freedom for modeling the
 messiness of biology without forcing an essentialist template on
 everything.
+
+GETS A BIT WAFFLY HERE
 
 There is no reasons why both approaches can't live side by side. Most
 would agree that there are some things for which TBox modeling makes
